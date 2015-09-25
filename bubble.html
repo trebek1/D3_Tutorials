@@ -129,10 +129,10 @@ function unicorn (selection) {
 
 }
 
-function blue (selection) {
+function blue (selection,dur) {
     selection
     .transition()
-    .duration(500)
+    .duration(dur)
     .delay(function(d,i){
         return i*25;    
     })
@@ -147,7 +147,7 @@ function blue (selection) {
     .attr('r', function(d){
         return d.r;  
     })
-    .style("fill", 'blue')
+    .style("fill", 'pink')
 
 }
 
@@ -172,7 +172,7 @@ function update(){
         return d.x>50;
     })
     .each(newData)
-    .call(blue)
+    .call(blue,2000)
     
 }
 
