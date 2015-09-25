@@ -57,6 +57,11 @@ function update(){
     })
 
     svg.selectAll('circle')
+    .transition()
+    .duration(500)
+    .delay(function(d,i){
+        return i*25;    
+    })
     .attr('cx', function(d){
         return xScale(d.x); 
     })
@@ -119,9 +124,6 @@ function update(){
         .attr('class', 'y axis')
         .attr('transform', 'translate(0, 0)')
         .call(yAxis);
-
-
-
 
     svg.selectAll('circle')
             .data(dataset)
