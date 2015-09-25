@@ -27,7 +27,7 @@
 <div id="chartArea"></div>
 <script type="text/javascript">
 
-  var dataset = _.map(_.range(25), function (i ) {
+  var dataset = _.map(_.range(150), function (i ) {
     return Math.random() * 100;
   });
 
@@ -46,10 +46,10 @@
   // look at dataset to set max domain 
     .domain([0,d3.max(dataset)*1.01])
     .range([0,h]);
-var colorScale = d3.scale.linear()
-  // look at dataset to set max domain 
-    .domain([0,d3.max(dataset)*1.01])
-    .range(['orange', 'purple']);
+  var colorScale = d3.scale.quantile()
+  // change colors to two buckets based on range - quantize 
+    .domain([0, 10, dataset.length-10,dataset.length])
+    .range(['yellow', 'green', 'orange', 'red']);
 
   svg.selectAll('rect')
     .data(dataset)
@@ -66,7 +66,9 @@ var colorScale = d3.scale.linear()
     .attr('height', function (d) {
       return yScale(d); 
     })
-    .attr('fill', colorScale)
+    .attr('fill', function(d,i){
+      return colorScale(i); 
+    }); 
 
 </script>
 </body>
