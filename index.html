@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>D3 - Data Driven Documents</title>
-  <script src="../node_modules/d3/d3.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   <style type="text/css">
 
     body {
@@ -11,16 +11,12 @@
     }
 
     #chartArea {
-      width: 400px;
-      height: 300px;
+      
       background-color: #CCC;
     }
 
     .bar {
       display: inline-block;
-      width: 20px;
-      height: 75px; /* Gets overriden by D3-assigned height below */
-      margin-right: 2px;
       fill: teal;
     }
 
@@ -36,7 +32,7 @@
     .attr('width', 400)
     .attr('height', 300);
 
-  var multiplier = 8;
+  var multiplier = 9;
 
   svg.selectAll('rect')
     .data(dataset)
