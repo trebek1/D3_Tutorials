@@ -131,13 +131,18 @@ function unicorn (selection) {
 
 
 function update(){
-    _.each(dataset, function(datum){
+
+    svg.selectAll('circle')
+    .filter(function(d){
+        return d.x<50;
+    })
+    .each(function(datum){
         datum.x = Math.round(Math.random()*100);
         datum.y = Math.round(Math.random()*100);
         datum.r = Math.round(5 + Math.random()*10);
     })
 
-    svg.selectAll('circle').call(unicorn);
+    .call(steppedTransition);
     
 }
 
