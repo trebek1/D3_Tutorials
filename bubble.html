@@ -129,6 +129,34 @@ function unicorn (selection) {
 
 }
 
+function blue (selection) {
+    selection
+    .transition()
+    .duration(500)
+    .delay(function(d,i){
+        return i*25;    
+    })
+    .attr('cx', function(d){
+        return xScale(d.x); 
+    })
+    
+    .attr('cy', function(d){
+        return yScale(d.y); 
+    })
+    
+    .attr('r', function(d){
+        return d.r;  
+    })
+    .style("fill", 'blue')
+
+}
+
+
+function newData(datum){
+    datum.x = Math.round(Math.random()*100);
+    datum.y = Math.round(Math.random()*100);
+    datum.r = Math.round(5 + Math.random()*10);
+}
 
 function update(){
 
@@ -136,13 +164,15 @@ function update(){
     .filter(function(d){
         return d.x<50;
     })
-    .each(function(datum){
-        datum.x = Math.round(Math.random()*100);
-        datum.y = Math.round(Math.random()*100);
-        datum.r = Math.round(5 + Math.random()*10);
-    })
+    .each(newData)
+    .call(steppedTransition)
 
-    .call(steppedTransition);
+    svg.selectAll('circle')
+    .filter(function(d){
+        return d.x>50;
+    })
+    .each(newData)
+    .call(blue)
     
 }
 
