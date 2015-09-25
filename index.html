@@ -18,7 +18,7 @@
     }
 
     .bar {
-      fill: teal;
+      
     }
 
   </style>
@@ -46,6 +46,10 @@
   // look at dataset to set max domain 
     .domain([0,d3.max(dataset)*1.01])
     .range([0,h]);
+var colorScale = d3.scale.linear()
+  // look at dataset to set max domain 
+    .domain([0,d3.max(dataset)*1.01])
+    .range(['orange', 'purple']);
 
   svg.selectAll('rect')
     .data(dataset)
@@ -61,7 +65,8 @@
     .attr('width', xScale.rangeBand())
     .attr('height', function (d) {
       return yScale(d); 
-    });
+    })
+    .attr('fill', colorScale)
 
 </script>
 </body>
