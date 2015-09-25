@@ -3,6 +3,7 @@
 <head>
   <title>D3 - Data Driven Documents</title>
   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src="underscore-min.js"></script>
   <style type="text/css">
 
     body {
@@ -16,7 +17,6 @@
     }
 
     .bar {
-      display: inline-block;
       fill: teal;
     }
 
@@ -26,18 +26,20 @@
 <div id="chartArea"></div>
 <script type="text/javascript">
 
-  var dataset = [ 5, 10, 15, 20, 25 ];
+  var dataset = _.map(_.range(15), function (i ) {
+    return Math.random() * 100;
+  });
+
   var w = 400, h=300; 
 
   var svg = d3.select('#chartArea').append('svg')
     .attr('width', w)
     .attr('height', h);
 
-    var yScale = d3.scale.linear()
-      .domain([0,50])
-      .range([0,h]);
-
-  var multiplier = 8;
+  var yScale = d3.scale.linear()
+  // look at dataset to set max domain 
+    .domain([0,d3.max(dataset)*1.01])
+    .range([0,h]);
 
   svg.selectAll('rect')
     .data(dataset)
