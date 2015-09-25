@@ -70,8 +70,11 @@ function update(){
     })
     .attr('r', function(d){
         return d.r;  
-    }); 
+    })
+    .style('fill', 'orange')
 }
+
+
 
     var dataset = _.map(_.range(25), function (i) {
         return {
